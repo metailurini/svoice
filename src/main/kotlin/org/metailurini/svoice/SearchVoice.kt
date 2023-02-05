@@ -2,21 +2,20 @@ package org.metailurini.svoice
 
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
-import java.nio.file.Paths
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.openapi.util.TextRange
 import com.intellij.util.io.DataOutputStream
-import javazoom.jl.player.Player
-import java.io.*
+import java.io.BufferedReader
+import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
 import java.nio.file.Files
 import java.nio.file.Path
+import java.nio.file.Paths
 import java.security.MessageDigest
-import java.util.Base64
-import kotlin.io.path.absolutePathString
+import java.util.*
 
 class SearchVoiceAction : AnAction() {
     private lateinit var tmpDir: Path
@@ -44,9 +43,10 @@ class SearchVoiceAction : AnAction() {
             }
 
             val soundName = Paths.get(tmpDir.toString(), hashString(selectedText))
-            if (listFileName.indexOf(soundName.absolutePathString()) == -1) {
-                with(URL("https://audio.api.speechify.dev/generateAudioFiles")
-                    .openConnection() as HttpURLConnection) {
+            if (listFileName.indexOf(soundName.toAbsolutePath().toString()) == -1) {
+                with(
+                    URL("https://audio.api.speechify.dev/generateAudioFiles").openConnection() as HttpURLConnection
+                ) {
                     requestMethod = "POST"
                     setRequestProperty("authority", "audio.api.speechify.dev")
                     setRequestProperty("accept", "*/*")
@@ -80,10 +80,19 @@ class SearchVoiceAction : AnAction() {
                 }
             }
 
-            val file = FileInputStream(soundName.toFile())
-            val buffer = BufferedInputStream(file)
-            val player = Player(buffer)
-            player.play()
+            println("run command $soundName")
+            var processBuilder = ProcessBuilder(
+                "/usr/bin/cvlc",
+                "--play-and-exit",
+                soundName.toAbsolutePath().toString(),
+            )
+            val process = processBuilder.start()
+            val inputStreamReader = InputStreamReader(process.inputStream)
+            val bufferedReader = BufferedReader(inputStreamReader)
+            var line: String?
+            while (bufferedReader.readLine().also { line = it } != null) {
+                println(line)
+            }
         }
     }
 }
