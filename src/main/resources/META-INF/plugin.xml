@@ -13,7 +13,11 @@
     <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
-    <description><![CDATA[this is the plugin support speak some statement]]></description>
+    <description><![CDATA[
+    The SVoice IntelliJ plugin is a powerful tool for improving your productivity and enhancing your workflow. With this plugin, you can easily select any text within your code and have it pronounced correctly with just a few clicks.
+    To use the SVoice plugin, simply highlight the text you want to hear, and then click "The Speaker" in the menu bar. From there, select "Speak Selected Text" and the plugin will take care of the rest. Whether you're working with code, comments, or any other type of text, the SVoice plugin makes it easy to hear what you're reading and stay focused on your work.
+    With its intuitive interface and powerful functionality, the SVoice plugin is a must-have for anyone looking to improve their coding experience. Whether you're a seasoned programmer or just starting out, this plugin will help you get the most out of your time in IntelliJ. So why wait? Download SVoice today and start hearing your code like never before!
+    ]]></description>
 
     <!-- Product and plugin compatibility requirements.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
