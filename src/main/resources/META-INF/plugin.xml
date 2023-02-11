@@ -8,7 +8,7 @@
     <name>Svoice</name>
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
-    <vendor email="shanenoi.org@gmail.com" url="github.com/metailurini">metailurini</vendor>
+    <vendor email="shanenoi.org@gmail.com" url="https://github.com/metailurini">metailurini</vendor>
 
     <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
